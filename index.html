@@ -50,7 +50,7 @@
     position: relative;
     z-index: 1;
     text-align: center;
-    padding: 48px 20px 36px;
+    padding: 24px 20px 18px;
     background: linear-gradient(180deg, rgba(201,168,76,0.06) 0%, transparent 100%);
     border-bottom: 1px solid rgba(201,168,76,0.12);
   }
@@ -67,7 +67,7 @@
     letter-spacing: 2px;
     padding: 5px 14px;
     border-radius: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
     animation: fadeDown 0.7s ease both;
   }
 
@@ -76,7 +76,7 @@
     font-size: clamp(24px, 7vw, 38px);
     font-weight: 900;
     line-height: 1.35;
-    margin-bottom: 14px;
+    margin-bottom: 8px;
     animation: fadeDown 0.7s 0.1s ease both;
   }
 
@@ -651,8 +651,7 @@
     당신의 <em>전생</em>이<br>오늘의 운을 말합니다
   </h1>
   <p class="header-sub">
-    재물·연애·건강까지, 십이지 전생으로 읽는 나의 운<br>
-    띠를 선택하고 오늘의 운과 개운법을 확인하세요
+    영상 속 전생 이야기에 나온 그 물건, 여기 모아 뒀습니다
   </p>
 </header>
 
@@ -672,6 +671,12 @@
   .ht-pick-cta { display:flex; align-items:center; justify-content:center; min-height:52px; margin-top:14px; border-radius:12px;
                   font-weight:800; font-size:16px; background:var(--naver); color:#fff; text-decoration:none; }
   .ht-pick-skip { font-size:12px; color:#CDBB91; margin-top:8px; line-height:1.45; }
+  .ht-other { margin-top:14px; padding-top:12px; border-top:1px solid rgba(201,168,76,.25); }
+  .ht-other-label { font-size:12.5px; color:#E2CE9E; margin-bottom:8px; }
+  .ht-chips { display:flex; flex-wrap:wrap; gap:8px; }
+  .ht-chip { min-height:44px; padding:0 16px; border-radius:22px; border:1px solid rgba(240,201,107,.55); background:transparent;
+              color:#FFF6E0; font:inherit; font-size:14px; font-weight:700; cursor:pointer; }
+  .ht-chip[aria-pressed="true"] { background:var(--gold-light); border-color:var(--gold-light); color:var(--black); }
   .ht-section-sub { margin:6px 0 0; font-size:13.5px; color:#E2CE9E; }
   .ht-group { margin: 26px 0 8px; }
   .ht-group-head { display:flex; align-items:center; gap:12px; margin:0 0 14px; padding:14px 14px 14px 12px;
@@ -697,6 +702,7 @@
     <div><div class="ht-pick-name" id="ht-name"></div><div class="ht-pick-past" id="ht-past"></div><div class="ht-pick-meta" id="ht-meta"></div></div></div>
   <a class="ht-pick-cta" id="ht-cta" target="_blank" rel="noopener nofollow sponsored">네이버에서 보기</a>
   <div class="ht-pick-skip" id="ht-skip"></div>
+  <div class="ht-other" id="ht-other" hidden><div class="ht-other-label">다른 영상에서 보셨나요?</div><div class="ht-chips" id="ht-chips"></div></div>
 </div>
 <section class="products-section">
   <div class="section-head">
@@ -882,18 +888,45 @@
 (function(){
   var P={"sleep_mask": {"short": "수면안대", "name": "이븐리슬립 꿀잠 수면안대", "symptom": "자도 자도 개운하지 않다", "past": "빛을 가려 주던 검은 무명 천", "use": "빛을 막아 깊이 자게 돕는", "skip": "이미 방이 완전히 깜깜하다면 안 사도 됩니다.", "price": 16600, "rating": 4.86, "reviews": 1594, "link": "https://naver.me/x8k7XpwR", "img": "img/ht_sleep_mask.jpg"}, "warm_eye": {"short": "온열안대", "name": "닥터하르 라벤더 온열 수면안대 1+1", "symptom": "화면만 보면 눈이 뻑뻑하고 무겁다", "past": "눈 위에 올리던 따뜻한 수건", "use": "눈가를 따뜻하게 데워 주는", "skip": "매일 따뜻한 수건 찜질을 하고 있다면 안 사도 됩니다.", "price": 9800, "rating": 4.96, "reviews": 575, "link": "https://naver.me/Fx2EltuY", "img": "img/ht_warm_eye.jpg"}, "ginger": {"short": "생강청", "name": "힘가네 생강청 600g", "symptom": "손발이 차고 아침이 무겁다", "past": "아침마다 끓여 둔 생강차", "use": "물에 타서 몸을 데워 마시는", "skip": "생강 맛이 맞지 않으면 안 사도 됩니다.", "price": 26800, "rating": 4.8, "reviews": 76028, "link": "https://naver.me/GuD6zTXP", "img": "img/ht_ginger.jpg"}, "redginseng": {"short": "홍삼스틱", "name": "묘미담 6년근 홍삼스틱 100포", "symptom": "오후만 되면 기운이 쑥 빠진다", "past": "달여 둔 인삼차 한 사발", "use": "한 포씩 챙겨 먹기 쉬운", "skip": "이미 홍삼을 챙겨 드신다면 안 사도 됩니다.", "price": 33500, "rating": 4.88, "reviews": 2076, "link": "https://naver.me/FDc85Heq", "img": "img/ht_redginseng.jpg"}, "ssanghwa": {"short": "쌍화차", "name": "힘가네 정읍 쌍화차 10개입", "symptom": "날이 쌀쌀해지면 몸이 으슬으슬하다", "past": "따뜻하게 데운 쌍화탕 한 사발", "use": "데워서 마시는", "skip": "따뜻한 차를 이미 매일 챙긴다면 안 사도 됩니다.", "price": 28800, "rating": 4.78, "reviews": 46415, "link": "https://naver.me/5l2Aevoc", "img": "img/ht_ssanghwa.jpg"}, "footbath": {"short": "족욕기", "name": "무탈 족욕기", "symptom": "발이 시려서 잠이 안 온다", "past": "뜨거운 물을 받은 나무 대야", "use": "발을 따뜻한 물에 담그는", "skip": "매일 반신욕을 하고 있다면 안 사도 됩니다.", "price": 14900, "rating": 4.79, "reviews": 6066, "link": "https://naver.me/IDkmqnoY", "img": "img/ht_footbath.jpg"}, "probiotic": {"short": "유산균", "name": "바이오리브 100억 생존 유산균 3개월분", "symptom": "먹기만 하면 속이 더부룩하다", "past": "집에서 담근 장과 식혜", "use": "하루 한 알 챙기는", "skip": "이미 유산균을 드시고 있다면 안 사도 됩니다.", "price": 37000, "rating": 4.85, "reviews": 2807, "link": "https://naver.me/FrirIxZQ", "img": "img/ht_probiotic.jpg"}, "pumpkin": {"short": "호박즙", "name": "자람푸드 늙은 호박즙 30포", "symptom": "아침마다 얼굴이 붓는다", "past": "푹 고아 낸 늙은 호박물", "use": "아침에 한 포 마시는", "skip": "붓기가 며칠씩 이어진다면 상품보다 병원이 먼저입니다.", "price": 16900, "rating": 4.84, "reviews": 5764, "link": "https://naver.me/FaeKMWqR", "img": "img/ht_pumpkin.jpg"}, "chimhyang": {"short": "침향환", "name": "조선비책 발효 침향환 60환", "symptom": "오후만 되면 기운이 바닥난다", "past": "귀하게 아껴 먹던 환약 한 알", "use": "하루 한 알 챙기는", "skip": "가격이 부담된다면 홍삼스틱부터 챙겨도 충분합니다.", "price": 99000, "rating": 4.87, "reviews": 77795, "link": "https://naver.me/xktAkcLO", "img": "img/ht_chimhyang.jpg"}, "lutein": {"short": "루테인", "name": "뉴트원 루테인 지아잔틴 30캡슐", "symptom": "오후만 되면 눈이 침침하고 무겁다", "past": "눈을 쉬게 하던 따뜻한 수건", "use": "하루 한 알 챙기는", "skip": "이미 눈 영양제를 드신다면 안 사도 됩니다.", "price": 19000, "rating": 4.84, "reviews": 1226, "link": "https://naver.me/xF4WkxOs", "img": "img/ht_lutein.jpg"}, "warm_body": {"short": "보온 텀블러", "name": "대용량 보온보냉 스텐 텀블러 1L", "symptom": "하루 종일 손발이 차고 몸이 식는다", "past": "품에 안고 다니던 따뜻한 물 주머니", "use": "따뜻한 물을 하루 종일 곁에 두는", "skip": "이미 보온병을 들고 다닌다면 안 사도 됩니다.", "price": 29900, "rating": 4.83, "reviews": 431, "link": "https://naver.me/5kPwL9UA", "img": "img/ht_warm_body.jpg"}, "sleep_2": {"short": "경추베개", "name": "나즘베개 경추베개 Type S/L", "symptom": "자고 일어나도 목과 어깨가 뻐근하다", "past": "목에 맞춰 짠 낮은 목침", "use": "목 높이를 맞춰 주는", "skip": "지금 베개가 목에 잘 맞는다면 안 사도 됩니다.", "price": 96300, "rating": 4.81, "reviews": 459, "link": "https://naver.me/FdqksZv1", "img": "img/ht_sleep_2.jpg"}, "sleep_3": {"short": "수면 귀마개", "name": "포낙 세레니티 수면 귀마개", "symptom": "작은 소리에도 자꾸 깬다", "past": "귀를 막아 주던 솜뭉치", "use": "밤 소음을 줄여 주는", "skip": "조용한 방에서 잘 잔다면 안 사도 됩니다.", "price": 39900, "rating": 4.51, "reviews": 3626, "link": "https://naver.me/xF4ApUNs", "img": "img/ht_sleep_3.jpg"}};
   var E=[{"t": "2026-10-29T11:00:00Z", "p": "ginger"}, {"t": "2026-10-31T11:00:00Z", "p": "redginseng"}, {"t": "2026-11-02T11:00:00Z", "p": "sleep_mask"}, {"t": "2026-11-04T11:00:00Z", "p": "pumpkin"}];
-  var now=Date.now(), cur=null;
-  for (var i=0;i<E.length;i++){ var t=Date.parse(E[i].t); if(t<=now && (!cur || t>=Date.parse(cur.t))) cur=E[i]; }
-  if(!cur || !P[cur.p]) return;
-  var p=P[cur.p], el=function(id){return document.getElementById(id);};
-  el('ht-symptom').textContent='“'+p.symptom+'”';
-  el('ht-img').src=p.img; el('ht-img').alt=p.name;
-  el('ht-name').textContent=p.name;
-  el('ht-past').textContent='전생의 그녀 곁엔 '+p.past+'. 지금은 '+p.use+' '+p.short+'.';
-  el('ht-meta').textContent=p.price.toLocaleString()+'원 · ⭐'+p.rating+' · 리뷰 '+p.reviews.toLocaleString();
-  var a=el('ht-cta'); a.href=p.link; a.setAttribute('data-goatcounter-click','pick-'+cur.p); a.setAttribute('data-goatcounter-title',p.short+' (영상 카드)');
-  el('ht-skip').textContent=p.skip;
+  var now=Date.now(), el=function(id){return document.getElementById(id);};
+  // 공개된 회차의 상품(최근 공개 순, 중복 제거). 쇼츠는 며칠에 걸쳐 조회되니 지난 회차 상품도 버튼으로 남긴다(2026-10-31).
+  var ids=[];
+  E.filter(function(e){return Date.parse(e.t)<=now && P[e.p];})
+   .sort(function(a,b){return Date.parse(b.t)-Date.parse(a.t);})
+   .forEach(function(e){ if(ids.indexOf(e.p)<0) ids.push(e.p); });
+  if(!ids.length) return;
+  var gc=function(path,title){ if(window.goatcounter && goatcounter.count) goatcounter.count({path:path,title:title,event:true}); };
+  var cur;
+  function show(id){
+    var p=P[id]; cur=id;
+    el('ht-symptom').textContent='“'+p.symptom+'”';
+    el('ht-img').src=p.img; el('ht-img').alt=p.name;
+    el('ht-name').textContent=p.name;
+    el('ht-past').textContent='전생의 그녀 곁엔 '+p.past+'. 지금은 '+p.use+' '+p.short+'.';
+    el('ht-meta').textContent=p.price.toLocaleString()+'원 · ⭐'+p.rating+' · 리뷰 '+p.reviews.toLocaleString();
+    var a=el('ht-cta'); a.href=p.link; a.setAttribute('data-goatcounter-click','pick-'+id); a.setAttribute('data-goatcounter-title',p.short+' (영상 카드)');
+    el('ht-skip').textContent=p.skip;
+    var bs=el('ht-chips').children;
+    for(var i=0;i<bs.length;i++) bs[i].setAttribute('aria-pressed', bs[i].getAttribute('data-id')===id ? 'true' : 'false');
+    var f=el('float-cta');   // 하단 고정 버튼도 카드와 같은 상품으로(예전엔 개운템 4종 중 무작위)
+    if(f){ f.href=p.link; f.target='_blank'; f.rel='noopener nofollow sponsored'; f.textContent='🔮 영상 속 '+p.short+' 보기'; }
+  }
+  if(ids.length>1){
+    ids.slice(0,6).forEach(function(id){
+      var b=document.createElement('button'); b.type='button'; b.className='ht-chip'; b.textContent=P[id].short; b.setAttribute('data-id',id);
+      b.onclick=function(){ show(id); gc('chip-'+id, P[id].short+' (다른 영상 버튼)'); };
+      el('ht-chips').appendChild(b);
+    });
+    el('ht-other').hidden=false;
+  }
+  show(ids[0]);
   el('ht-pick').className='ht-pick on';
+  // 하단 버튼은 이 스크립트보다 뒤에 있다 → 문서를 다 읽은 뒤 연결하고 클릭을 직접 센다
+  document.addEventListener('DOMContentLoaded', function(){
+    show(cur);
+    var f=el('float-cta');
+    if(f) f.addEventListener('click', function(){ gc('float-'+cur, P[cur].short+' (하단 버튼)'); });
+  });
 })();
 </script>
 <script data-goatcounter="https://dealcode.goatcounter.com/count" data-goatcounter-settings='{"path":"/signal/"}' async src="//gc.zgo.at/count.js"></script>
@@ -903,7 +936,8 @@
 <section class="section">
   <div class="section-head">
     <div class="section-label">ZODIAC SIGN</div>
-    <div class="section-title">당신의 띠를 선택하세요</div>
+    <div class="section-title">내 띠 전생 이야기 더 보기</div>
+    <p class="ht-section-sub">누르면 유튜브 재생목록으로 이동합니다</p>
     <div class="divider"></div>
   </div>
 
@@ -925,7 +959,7 @@
       <span class="zodiac-name">토끼띠</span>
     </a>
     <!-- 용·말띠: 영상 0편이라 재생목록 없음. 업로드되면 재생목록 링크로 교체할 것 (뱀띠는 2026-07-12 재생목록 신설 완료) -->
-    <a href="https://www.youtube.com/channel/UCllJoonAn_OWC-8rZqJnBYw/search?query=%EC%9A%A9%EB%9D%A0" class="zodiac-btn">
+    <a href="https://www.youtube.com/playlist?list=PLH3Ko_PmUuyc" class="zodiac-btn">
       <span class="zodiac-emoji">🐲</span>
       <span class="zodiac-name">용띠</span>
     </a>
@@ -933,7 +967,7 @@
       <span class="zodiac-emoji">🐍</span>
       <span class="zodiac-name">뱀띠</span>
     </a>
-    <a href="https://www.youtube.com/channel/UCllJoonAn_OWC-8rZqJnBYw/search?query=%EB%A7%90%EB%9D%A0" class="zodiac-btn">
+    <a href="https://www.youtube.com/playlist?list=PLZQROG2j3PCs" class="zodiac-btn">
       <span class="zodiac-emoji">🐴</span>
       <span class="zodiac-name">말띠</span>
     </a>
@@ -1233,51 +1267,6 @@
   </p>
 </section>
 
-<!-- 후기 -->
-<section class="reviews-section">
-  <div class="section-head">
-    <div class="section-label">REVIEWS</div>
-    <div class="section-title">시청자 후기</div>
-    <div class="divider"></div>
-  </div>
-
-  <div class="review-card">
-    <div class="review-top">
-      <div class="review-av">쥐</div>
-      <div class="review-meta">
-        <div class="review-nick">k****2</div>
-        <div class="review-stars">★★★★★</div>
-      </div>
-      <span class="review-badge">쥐띠</span>
-    </div>
-    <div class="review-text">소름 돋았어요. 왜 돈이 모이지 않는지 처음으로 납득했습니다. 영상 보고 바로 지출 패턴 바꿨더니 이번 달 처음으로 여유가 생겼어요.</div>
-  </div>
-
-  <div class="review-card">
-    <div class="review-top">
-      <div class="review-av">말</div>
-      <div class="review-meta">
-        <div class="review-nick">j****8</div>
-        <div class="review-stars">★★★★★</div>
-      </div>
-      <span class="review-badge">말띠</span>
-    </div>
-    <div class="review-text">전생 이야기가 제 현재 상황이랑 너무 딱 맞아서 깜짝 놀랐어요. 처방대로 해봤더니 진짜 돈이 덜 새는 느낌이에요.</div>
-  </div>
-
-  <div class="review-card">
-    <div class="review-top">
-      <div class="review-av">닭</div>
-      <div class="review-meta">
-        <div class="review-nick">p****5</div>
-        <div class="review-stars">★★★★★</div>
-      </div>
-      <span class="review-badge">닭띠</span>
-    </div>
-    <div class="review-text">재미로 봤는데 내용이 너무 구체적이라 놀랐어요. 베푸는 걸 좋아하는데 정작 내 몫이 없다는 말이 정확했어요.</div>
-  </div>
-</section>
-
 <!-- 푸터 -->
 <footer class="footer">
   <div class="footer-logo">전생시그널</div>
@@ -1290,22 +1279,15 @@
 
 <!-- 플로팅 CTA -->
 <div class="float-wrap">
-  <a href="#" class="float-cta" target="_blank">
-    🔮 오늘의 개운 아이템 보기
+  <a href="#ht-g01" class="float-cta" id="float-cta">
+    🔮 건강 고민별 물건 보기
   </a>
 </div>
 
 <script>
   /* 카운트다운 타이머 제거 (2026-08-30) — 근거 없는 마감시한은 표시광고법 리스크 */
 
-  const links = [
-    "https://naver.me/xktAkcLO",
-    "https://naver.me/5RAWKBur",
-    "https://naver.me/58qsPR9S",
-    "https://naver.me/FLEMeXxV"
-  ];
-  const random = links[Math.floor(Math.random() * links.length)];
-  document.querySelector(".float-cta").href = random;
+  /* 하단 고정 버튼(#float-cta)은 HEALTH_TEST 블록 스크립트가 '영상 속 그 물건'과 같은 상품으로 연결한다 (2026-10-31, 예전엔 개운템 4종 무작위) */
 
   /* 슬롯2 — proofbar count-up (좌→우 stagger, settle-soft, 화면 진입 시 1회) */
   (function () {
