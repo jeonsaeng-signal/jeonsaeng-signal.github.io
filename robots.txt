@@ -1,0 +1,5 @@
+# 검색엔진·AI 검색(OAI-SearchBot·Claude-SearchBot·PerplexityBot 등)·AI 학습 크롤러 모두 허용 — 인용 유입이 목표
+User-agent: *
+Allow: /
+
+Sitemap: https://jeonsaeng-signal.github.io/sitemap.xml

@@ -1,0 +1,23 @@
+# 전생시그널
+
+> 전생시그널은 띠별 운세 중 건강운을 천 년 전 전생 이야기로 풀어 주는 1분 쇼츠 채널입니다. 이 사이트는 영상마다 다룬 몸의 신호(질문), 짧은 답, 영상 대본, 영상 속 물건을 한 페이지씩 모아 둡니다.
+
+## 영상별 페이지
+- [손끝이 하루 종일 식어 있는 사람 특징](https://jeonsaeng-signal.github.io/health/warm-body/): 개띠 건강운, 2026-11-14 공개, 영상 속 물건 보온 텀블러
+- [작은 소리에도 밤새 깨는 이유](https://jeonsaeng-signal.github.io/health/sleep-3/): 말띠 건강운, 2026-11-12 공개, 영상 속 물건 수면 귀마개
+- [먹기만 하면 속이 더부룩한 이유](https://jeonsaeng-signal.github.io/health/probiotic/): 용띠 건강운, 2026-11-10 공개, 영상 속 물건 유산균
+- [발이 시려서 잠 못 드는 이유](https://jeonsaeng-signal.github.io/health/footbath/): 닭띠 건강운, 2026-11-08 공개, 영상 속 물건 족욕기
+- [찬바람 불면 손발부터 시린 이유](https://jeonsaeng-signal.github.io/health/ssanghwa/): 쥐띠 건강운, 2026-11-06 공개, 영상 속 물건 쌍화차
+- [아침마다 거울 속 얼굴이 붓는 이유](https://jeonsaeng-signal.github.io/health/pumpkin/): 원숭이띠 건강운, 2026-11-04 공개, 영상 속 물건 호박즙
+- [자도 자도 개운하지 않은 이유](https://jeonsaeng-signal.github.io/health/sleep-mask/): 양띠 건강운, 2026-11-02 공개, 영상 속 물건 수면안대
+- [점심 먹고 나면 기운 꺾이는 이유](https://jeonsaeng-signal.github.io/health/redginseng/): 뱀띠 건강운, 2026-10-31 공개, 영상 속 물건 홍삼스틱
+- [손발은 차고 아침은 무거운 이유](https://jeonsaeng-signal.github.io/health/ginger/): 소띠 건강운, 2026-10-29 공개, 영상 속 물건 생강청
+
+## 채널
+- 유튜브: https://www.youtube.com/@전생시그널
+
+## 콘텐츠 정책
+- 전생 이야기는 재미로 보는 창작이고, 그림과 목소리는 AI로 만듭니다.
+- 건강운 편은 의학 정보가 아닌 생활 습관 이야기예요. 몸이 계속 불편하면 병원 진료를 받으세요.
+- 영상 속 물건 링크는 네이버 브랜드커넥트 제휴 링크라, 구매 시 수수료를 받습니다.
+- 각 페이지의 일반 상식 문장은 사람이 쓴 생활 정보이고, 상품 가격·리뷰 수는 표시한 기준일의 네이버 값입니다.
