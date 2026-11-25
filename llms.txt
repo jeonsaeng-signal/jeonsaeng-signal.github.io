@@ -3,6 +3,7 @@
 > 전생시그널은 띠별 운세 중 건강운을 천 년 전 전생 이야기로 풀어 주는 1분 쇼츠 채널입니다. 이 사이트는 영상마다 다룬 몸의 신호(질문), 짧은 답, 영상 대본, 영상 속 물건을 한 페이지씩 모아 둡니다.
 
 ## 영상별 페이지
+- [불 끄고 누워도 잠이 안 오는 이유](https://jeonsaeng-signal.github.io/health/jujube/): 뱀띠 건강운, 2026-11-24 공개, 영상 속 물건 대추차
 - [난방만 켜면 눈이 뻑뻑해지는 이유](https://jeonsaeng-signal.github.io/health/warm-eye/): 소띠 건강운, 2026-11-22 공개, 영상 속 물건 온열안대
 - [자고 일어나면 목부터 뻐근한 이유](https://jeonsaeng-signal.github.io/health/neck-pillow/): 돼지띠 건강운, 2026-11-20 공개, 영상 속 물건 경추베개
 - [건조한 날이면 목이 칼칼한 이유](https://jeonsaeng-signal.github.io/health/doraji/): 토끼띠 건강운, 2026-11-18 공개, 영상 속 물건 도라지청
